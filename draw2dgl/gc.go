@@ -372,11 +372,5 @@ func (gc *GraphicContext) FillStroke(paths ...*draw2d.Path) {
 }
 
 func useNonZeroWinding(f draw2d.FillRule) bool {
-	switch f {
-	case draw2d.FillRuleEvenOdd:
-		return false
-	case draw2d.FillRuleWinding:
-		return true
-	}
-	return false
+	return f == draw2d.FillRuleWinding
 }
