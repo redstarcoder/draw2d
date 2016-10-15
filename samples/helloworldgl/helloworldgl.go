@@ -1,4 +1,4 @@
-// Open an OpenGl window and display a rectangle using a OpenGl GraphicContext
+// Open an OpenGl window and display a rectangle and "Hello World" using a OpenGl GraphicContext
 package main
 
 import (
@@ -17,6 +17,7 @@ var (
 	// global rotation
 	rotate        int
 	width, height int
+	mx, my	      int
 	redraw        = true
 	font          draw2d.FontData
 )
@@ -56,12 +57,15 @@ func display() {
 		Name:   "luxi",
 		Family: draw2d.FontFamilyMono,
 		Style:  draw2d.FontStyleBold | draw2d.FontStyleItalic})
-
+	gc.SetFontSize(14)
+	// Draw Rectangle
 	gc.BeginPath()
 	draw2dkit.RoundedRectangle(gc, 200, 200, 600, 600, 100, 100)
-
 	gc.SetFillColor(color.RGBA{0, 0, 0, 0xff})
 	gc.Fill()
+	// Display Hello World
+	gc.BeginPath()
+	gc.FillStringAt("Hello World", 8, 52)
 
 	gl.Flush() /* Single buffered, so needs a flush. */
 }
@@ -86,6 +90,8 @@ func main() {
 	window.SetSizeCallback(reshape)
 	window.SetKeyCallback(onKey)
 	window.SetCharCallback(onChar)
+	window.SetCursorPosCallback(onMMove)
+	window.SetMouseButtonCallback(onMClick)
 
 	glfw.SwapInterval(1)
 
@@ -108,6 +114,14 @@ func main() {
 
 func onChar(w *glfw.Window, char rune) {
 	log.Println(char)
+}
+
+func onMMove(w *glfw.Window, xpos, ypos float64) {
+	mx, my = int(xpos), int(ypos)
+}
+
+func onMClick(w *glfw.Window, button glfw.MouseButton, action glfw.Action, mods glfw.ModifierKey) {
+	log.Printf("Pos=(%d, %d) Btn=%d Pressed=%t", mx, my, button, action==glfw.Press)
 }
 
 func onKey(w *glfw.Window, key glfw.Key, scancode int, action glfw.Action, mods glfw.ModifierKey) {
