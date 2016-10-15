@@ -1,13 +1,13 @@
 draw2d
 ======
-[![Coverage](http://gocover.io/_badge/github.com/llgcode/draw2d?0)](http://gocover.io/github.com/llgcode/draw2d)
-[![GoDoc](https://godoc.org/github.com/llgcode/draw2d?status.svg)](https://godoc.org/github.com/llgcode/draw2d)
+[![Coverage](http://gocover.io/_badge/github.com/redstarcoder/draw2d?0)](http://gocover.io/github.com/redstarcoder/draw2d)
+[![GoDoc](https://godoc.org/github.com/redstarcoder/draw2d?status.svg)](https://godoc.org/github.com/redstarcoder/draw2d)
 
-Package draw2d is a pure [go](http://golang.org) 2D vector graphics library with support for multiple output devices such as [images](http://golang.org/pkg/image) (draw2d), pdf documents (draw2dpdf) and opengl (draw2dgl), which can also be used on the google app engine. It can be used as a pure go [Cairo](http://www.cairographics.org/) alternative. draw2d is released under the BSD license. See the [documentation](http://godoc.org/github.com/llgcode/draw2d) for more details.
+Package draw2d is a pure [go](http://golang.org) 2D vector graphics library with support for multiple output devices such as [images](http://golang.org/pkg/image) (draw2d), pdf documents (draw2dpdf) and opengl (draw2dgl), which can also be used on the google app engine. It can be used as a pure go [Cairo](http://www.cairographics.org/) alternative. draw2d is released under the BSD license. See the [documentation](http://godoc.org/github.com/redstarcoder/draw2d) for more details.
 
-[![geometry](https://raw.githubusercontent.com/llgcode/draw2d/master/output/samples/geometry.png)](https://raw.githubusercontent.com/llgcode/draw2d/master/resource/image/geometry.pdf)[![postscript](https://raw.githubusercontent.com/llgcode/draw2d/master/output/samples/postscript.png)](https://raw.githubusercontent.com/llgcode/draw2d/master/resource/image/postscript.pdf)
+[![geometry](https://raw.githubusercontent.com/redstarcoder/draw2d/master/output/samples/geometry.png)](https://raw.githubusercontent.com/redstarcoder/draw2d/master/resource/image/geometry.pdf)[![postscript](https://raw.githubusercontent.com/redstarcoder/draw2d/master/output/samples/postscript.png)](https://raw.githubusercontent.com/redstarcoder/draw2d/master/resource/image/postscript.pdf)
 
-Click on an image above to get the pdf, generated with exactly the same draw2d code. The first image is the output of `samples/geometry`. The second image is the result of `samples/postcript`, which demonstrates that draw2d can draw postscript files into images or pdf documents with the [ps](https://github.com/llgcode/ps) package.
+Click on an image above to get the pdf, generated with exactly the same draw2d code. The first image is the output of `samples/geometry`. The second image is the result of `samples/postcript`, which demonstrates that draw2d can draw postscript files into images or pdf documents with the [ps](https://github.com/redstarcoder/ps) package.
 
 Features
 --------
@@ -23,12 +23,12 @@ Install [golang](http://golang.org/doc/install). To install or update the packag
 
 Stable release
 ```
-go get -u gopkg.in/llgcode/draw2d.v1
+go get -u gopkg.in/redstarcoder/draw2d.v1
 ```
 
 or Current release
 ```
-go get -u github.com/llgcode/draw2d
+go get -u github.com/redstarcoder/draw2d
 ```
 
 
@@ -41,7 +41,7 @@ The following Go code generates a simple drawing and saves it to an image file w
 package main
 
 import (
-	"github.com/llgcode/draw2d/draw2dimg"
+	"github.com/redstarcoder/draw2d/draw2dimg"
 	"image"
 	"image/color"
 )
@@ -74,7 +74,7 @@ The same Go code can also generate a pdf document with package draw2dpdf:
 package main
 
 import (
-	"github.com/llgcode/draw2d/draw2dpdf"
+	"github.com/redstarcoder/draw2d/draw2dpdf"
 	"image/color"
 )
 
@@ -100,7 +100,7 @@ func main() {
 }
 ```
 
-There are more examples here: https://github.com/llgcode/draw2d/tree/master/samples
+There are more examples here: https://github.com/redstarcoder/draw2d/tree/master/samples
 
 Drawing on opengl is provided by the draw2dgl package.
 
