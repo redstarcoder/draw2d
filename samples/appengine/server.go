@@ -9,9 +9,9 @@ import (
 	"image/png"
 	"net/http"
 
-	"github.com/llgcode/draw2d/draw2dimg"
-	"github.com/llgcode/draw2d/draw2dpdf"
-	"github.com/llgcode/draw2d/samples/android"
+	"github.com/redstarcoder/draw2d/draw2dimg"
+	"github.com/redstarcoder/draw2d/draw2dpdf"
+	"github.com/redstarcoder/draw2d/samples/android"
 
 	"appengine"
 )

@@ -10,8 +10,8 @@ import (
 	"log"
 	"math"
 
-	"github.com/llgcode/draw2d"
-	"github.com/llgcode/draw2d/draw2dbase"
+	"github.com/redstarcoder/draw2d"
+	"github.com/redstarcoder/draw2d/draw2dbase"
 
 	"github.com/golang/freetype/raster"
 	"github.com/golang/freetype/truetype"

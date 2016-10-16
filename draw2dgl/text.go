@@ -2,7 +2,7 @@ package draw2dgl
 
 import (
 	"github.com/golang/freetype/truetype"
-	"github.com/llgcode/draw2d"
+	"github.com/redstarcoder/draw2d"
 
 	"golang.org/x/image/math/fixed"
 )
