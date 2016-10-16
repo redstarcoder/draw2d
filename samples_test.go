@@ -14,7 +14,6 @@ import (
 	"github.com/redstarcoder/draw2d/samples/helloworld"
 	"github.com/redstarcoder/draw2d/samples/line"
 	"github.com/redstarcoder/draw2d/samples/linecapjoin"
-	"github.com/redstarcoder/draw2d/samples/postscript"
 )
 
 func TestSampleAndroid(t *testing.T) {
@@ -53,8 +52,4 @@ func TestSampleLine(t *testing.T) {
 
 func TestSampleLineCapJoin(t *testing.T) {
 	test(t, linecapjoin.Main)
-}
-
-func TestSamplePostscript(t *testing.T) {
-	test(t, postscript.Main)
 }

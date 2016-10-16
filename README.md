@@ -7,7 +7,7 @@ Package draw2d is a pure [go](http://golang.org) 2D vector graphics library with
 
 [![geometry](https://raw.githubusercontent.com/redstarcoder/draw2d/master/output/samples/geometry.png)](https://raw.githubusercontent.com/redstarcoder/draw2d/master/resource/image/geometry.pdf)[![postscript](https://raw.githubusercontent.com/redstarcoder/draw2d/master/output/samples/postscript.png)](https://raw.githubusercontent.com/redstarcoder/draw2d/master/resource/image/postscript.pdf)
 
-Click on an image above to get the pdf, generated with exactly the same draw2d code. The first image is the output of `samples/geometry`. The second image is the result of `samples/postcript`, which demonstrates that draw2d can draw postscript files into images or pdf documents with the [ps](https://github.com/redstarcoder/ps) package.
+Click on an image above to get the pdf, generated with exactly the same draw2d code. The first image is the output of `samples/geometry`. The second image is the result of `samples/postcript` (only in the upstream repo), which demonstrates that draw2d can draw postscript files into images or pdf documents with the [ps](https://github.com/llgcode/ps) package.
 
 Features
 --------
