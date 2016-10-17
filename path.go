@@ -24,12 +24,6 @@ type PathBuilder interface {
 	CubicCurveTo(cx1, cy1, cx2, cy2, x, y float64)
 	// ArcTo adds an arc to the current subpath
 	ArcTo(cx, cy, rx, ry, startAngle, angle float64)
-	// SetPos attempts to calculate the Path's (0, 0) origin, then shift
-	// it to (x, y). The coordinates represent an approximate upper-left
-	// corner of the Path.
-	SetPos(x, y float64)
-	// Shift moves every point in the path by x and y
-	Shift(x, y float64)
 	// Close creates a line from the current point to the last MoveTo
 	// point (if not the same) and mark the path as closed so the
 	// first and last lines join nicely.
@@ -192,55 +186,6 @@ func (p *Path) Clear() {
 // IsEmpty returns true if the path is empty
 func (p *Path) IsEmpty() bool {
 	return len(p.Components) == 0
-}
-
-// Shift moves every point in the path by x and y
-func (p *Path) Shift(x, y float64) {
-	j := 0
-	for _, cmd := range(p.Components) {
-		if cmd == CloseCmp {
-			continue
-		}
-		p.Points[j] += x
-		p.Points[j+1] += y
-		j += 2
-		switch cmd {
-		case QuadCurveToCmp:
-			p.Points[j] += x
-			p.Points[j+1] += y
-			j += 2
-		case CubicCurveToCmp:
-			p.Points[j] += x
-			p.Points[j+1] += y
-			p.Points[j+2] += x
-			p.Points[j+3] += y
-			j += 4
-		case ArcToCmp:
-			p.Points[j] += x
-			p.Points[j+1] += y
-			j += 4
-		}
-	}
-}
-
-// SetPos attempts to calculate the Path's (0, 0) origin, then shift it to (x, y). The coordinates
-// represent an approximate upper-left corner of the Path. It works best when all the points on the
-// Path are positive. It's fastest if the first point is (0, 0).
-func (p *Path) SetPos(x, y float64) {
-	if len(p.Points)%2 != 0 {
-		panic("Invalid Path (odd number of points)")
-	}
-	//FIXME the compiler should compute the max possible value.
-	var nx, ny float64 = math.Inf(1), math.Inf(1)
-	for i := 0; i < len(p.Points) && (nx != 0 || ny != 0); i += 2 {
-		if p.Points[i] < nx {
-			nx = p.Points[i]
-		}
-		if p.Points[i+1] < ny {
-			ny = p.Points[i+1]
-		}
-	}
-	p.Shift(x-nx, y-ny)
 }
 
 // String returns a debug text view of the path
