@@ -28,8 +28,6 @@ type PathBuilder interface {
 	// point (if not the same) and mark the path as closed so the
 	// first and last lines join nicely.
 	Close()
-	//CopyPath copies the current path, then returns it
-	CopyPath() *Path
 }
 
 // PathCmp represents component of a path
@@ -68,7 +66,7 @@ func (p *Path) appendToPath(cmd PathCmp, points ...float64) {
 // AppendPath appends np to the current path
 func (p *Path) AppendPath(np *Path) {
 	j := 0
-	for _, cmd := range(np.Components) {
+	for _, cmd := range np.Components {
 		switch cmd {
 		case MoveToCmp:
 			p.MoveTo(np.Points[j], np.Points[j+1])
