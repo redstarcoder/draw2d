@@ -172,6 +172,14 @@ func (gc *StackGraphicContext) Close() {
 	gc.Current.Path.Close()
 }
 
+func (gc *StackGraphicContext) CopyPath() *draw2d.Path {
+	return gc.Current.Path.Copy()
+}
+
+func (gc *StackGraphicContext) AppendPath(np *draw2d.Path) {
+	gc.Current.Path.AppendPath(np)
+}
+
 func (gc *StackGraphicContext) Save() {
 	context := new(ContextStack)
 	context.FontSize = gc.Current.FontSize

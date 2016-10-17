@@ -10,6 +10,8 @@ import (
 
 // PathBuilder describes the interface for path drawing.
 type PathBuilder interface {
+	// AppendPath appends np to the current path
+	AppendPath(p *Path)
 	// LastPoint returns the current point of the current sub path
 	LastPoint() (x, y float64)
 	// MoveTo creates a new subpath that start at the specified point
@@ -32,6 +34,8 @@ type PathBuilder interface {
 	// point (if not the same) and mark the path as closed so the
 	// first and last lines join nicely.
 	Close()
+	//CopyPath copies the current path, then returns it
+	CopyPath() *Path
 }
 
 // PathCmp represents component of a path
@@ -65,6 +69,30 @@ type Path struct {
 func (p *Path) appendToPath(cmd PathCmp, points ...float64) {
 	p.Components = append(p.Components, cmd)
 	p.Points = append(p.Points, points...)
+}
+
+// AppendPath appends np to the current path
+func (p *Path) AppendPath(np *Path) {
+	j := 0
+	for _, cmd := range(np.Components) {
+		switch cmd {
+		case MoveToCmp:
+			p.MoveTo(np.Points[j], np.Points[j+1])
+			j += 2
+		case LineToCmp:
+			p.LineTo(np.Points[j], np.Points[j+1])
+			j += 2
+		case QuadCurveToCmp:
+			p.QuadCurveTo(np.Points[j], np.Points[j+1], np.Points[j+2], np.Points[j+3])
+			j += 4
+		case CubicCurveToCmp:
+			p.CubicCurveTo(np.Points[j], np.Points[j+1], np.Points[j+2], np.Points[j+3], np.Points[j+4], np.Points[j+5])
+			j += 6
+		case ArcToCmp:
+			p.ArcTo(np.Points[j], np.Points[j+1], np.Points[j+2], np.Points[j+3], np.Points[j+4], np.Points[j+5])
+			j += 6
+		}
+	}
 }
 
 // LastPoint returns the current point of the current path
