@@ -22,6 +22,12 @@ type PathBuilder interface {
 	CubicCurveTo(cx1, cy1, cx2, cy2, x, y float64)
 	// ArcTo adds an arc to the current subpath
 	ArcTo(cx, cy, rx, ry, startAngle, angle float64)
+	// SetPos attempts to calculate the Path's (0, 0) origin, then shift
+	// it to (x, y). The coordinates represent an approximate upper-left
+	// corner of the Path.
+	SetPos(x, y float64)
+	// Shift moves every point in the path by x and y
+	Shift(x, y float64)
 	// Close creates a line from the current point to the last MoveTo
 	// point (if not the same) and mark the path as closed so the
 	// first and last lines join nicely.
@@ -162,7 +168,7 @@ func (p *Path) IsEmpty() bool {
 
 // Shift moves every point in the path by x and y
 func (p *Path) Shift(x, y float64) {
-	for i := 0;i < len(p.Points);i += 2 {
+	for i := 0; i < len(p.Points); i += 2 {
 		p.Points[i] += x
 		p.Points[i+1] += y
 	}
@@ -172,12 +178,12 @@ func (p *Path) Shift(x, y float64) {
 // represent an approximate upper-left corner of the Path. It works best when all the points on the
 // Path are positive. It's fastest if the first point is (0, 0).
 func (p *Path) SetPos(x, y float64) {
-	if len(p.Points) % 2 != 0 {
+	if len(p.Points)%2 != 0 {
 		panic("Invalid Path (odd number of points)")
 	}
 	//FIXME the compiler should compute the max possible value.
 	var nx, ny float64 = math.Inf(1), math.Inf(1)
-	for i := 0;i < len(p.Points) && (nx != 0 || ny != 0);i += 2 {
+	for i := 0; i < len(p.Points) && (nx != 0 || ny != 0); i += 2 {
 		if p.Points[i] < nx {
 			nx = p.Points[i]
 		}
