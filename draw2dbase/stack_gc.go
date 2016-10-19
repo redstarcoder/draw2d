@@ -132,6 +132,10 @@ func (gc *StackGraphicContext) BeginPath() {
 	gc.Current.Path.Clear()
 }
 
+func (gc *StackGraphicContext) GetPath() draw2d.Path {
+	return *gc.Current.Path.Copy()
+}
+
 func (gc *StackGraphicContext) IsEmpty() bool {
 	return gc.Current.Path.IsEmpty()
 }
@@ -162,10 +166,6 @@ func (gc *StackGraphicContext) ArcTo(cx, cy, rx, ry, startAngle, angle float64) 
 
 func (gc *StackGraphicContext) Close() {
 	gc.Current.Path.Close()
-}
-
-func (gc *StackGraphicContext) CopyPath() *draw2d.Path {
-	return gc.Current.Path.Copy()
 }
 
 func (gc *StackGraphicContext) AppendPath(np *draw2d.Path) {
