@@ -1,4 +1,4 @@
-package draw2dgl
+package draw2dbase
 
 import (
 	"github.com/golang/freetype/truetype"
