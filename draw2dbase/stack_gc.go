@@ -5,6 +5,7 @@ package draw2dbase
 
 import (
 	"errors"
+	"fmt"
 	"image"
 	"image/color"
 	"log"
@@ -213,6 +214,11 @@ func (gc *StackGraphicContext) Restore() {
 	}
 }
 
+func (gc *StackGraphicContext) GetFontName() string {
+	fontData := gc.Current.FontData
+	return fmt.Sprintf("%s:%d:%d:%d", fontData.Name, fontData.Family, fontData.Style, gc.Current.FontSize)
+}
+
 func (gc *StackGraphicContext) loadCurrentFont() (*truetype.Font, error) {
 	font := draw2d.GetFont(gc.Current.FontData)
 	if font == nil {
@@ -318,7 +324,7 @@ func (gc *StackGraphicContext) SetDPI(dpi int) {
 	gc.recalc()
 }
 
-// SetFont sets the font used to draw text.
+// SetFont sets the font used to draw text
 func (gc *StackGraphicContext) SetFont(font *truetype.Font) {
 	gc.Current.Font = font
 }
