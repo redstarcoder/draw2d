@@ -10,8 +10,6 @@ import (
 
 // PathBuilder describes the interface for path drawing.
 type PathBuilder interface {
-	// AppendPath appends np to the current path
-	AppendPath(p *Path)
 	// LastPoint returns the current point of the current sub path
 	LastPoint() (x, y float64)
 	// MoveTo creates a new subpath that start at the specified point

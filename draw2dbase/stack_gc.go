@@ -41,9 +41,9 @@ type ContextStack struct {
 	Font *truetype.Font
 	// fontSize and dpi are used to calculate scale. scale is the number of
 	// 26.6 fixed point units in 1 em.
-	Scale float64
-	glyphBuf         *truetype.GlyphBuf
-	DPI		int
+	Scale    float64
+	glyphBuf *truetype.GlyphBuf
+	DPI      int
 
 	Previous *ContextStack
 }
@@ -178,10 +178,6 @@ func (gc *StackGraphicContext) ArcTo(cx, cy, rx, ry, startAngle, angle float64) 
 
 func (gc *StackGraphicContext) Close() {
 	gc.Current.Path.Close()
-}
-
-func (gc *StackGraphicContext) AppendPath(np *draw2d.Path) {
-	gc.Current.Path.AppendPath(np)
 }
 
 func (gc *StackGraphicContext) Save() {
